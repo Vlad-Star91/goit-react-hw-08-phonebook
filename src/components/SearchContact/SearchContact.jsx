@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import shortid from "shortid";
-// import { connect } from 'react-redux';
 import { useSelector, useDispatch } from "react-redux";
 import * as phonebookActions from "../../redux/phonebook/phonebook-actions";
 

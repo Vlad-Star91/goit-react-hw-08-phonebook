@@ -1,7 +1,6 @@
 import { useState } from "react";
 import shortid from "shortid";
 import s from "./Form.module.css";
-// import { connect } from 'react-redux';
 import { useSelector, useDispatch } from "react-redux";
 import * as phonebookOperations from "../../redux/phonebook/phonebook-operations";
 
