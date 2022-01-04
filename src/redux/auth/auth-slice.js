@@ -13,11 +13,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   extraReducers: {
+    [authOperations.register.pending](state) {
+      state.error = null;
+    },
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
-      state.error = null;
     },
     [authOperations.register.rejected](state, action) {
       state.isLoggedIn = false;
@@ -33,12 +35,12 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.error = action.error.message;
     },
-    [authOperations.logOut.fulfilled](state, _) {
+    [authOperations.logOut.fulfilled](state) {
       state.user = { name: null, number: null };
       state.token = null;
       state.isLoggedIn = false;
     },
-    [authOperations.fetchCurrentUser.pending](state, _) {
+    [authOperations.fetchCurrentUser.pending](state) {
       state.isFetchingCurrentUser = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
@@ -46,7 +48,7 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.isFetchingCurrentUser = false;
     },
-    [authOperations.fetchCurrentUser.rejected](state, _) {
+    [authOperations.fetchCurrentUser.rejected](state) {
       state.isLoggedIn = false;
       state.isFetchingCurrentUser = false;
     },

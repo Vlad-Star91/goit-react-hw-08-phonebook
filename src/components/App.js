@@ -15,11 +15,16 @@ const RegisterView = lazy(() =>
 const LoginView = lazy(() => import("../views/LoginView/LoginView.jsx"));
 
 export default function App() {
+  const token = useSelector(authSelectors.authToken);
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsCurrentUser);
   useEffect(() => {
-    dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+    dispatch(
+      authOperations.fetchCurrentUser(null, {
+        skip: !token,
+      })
+    );
+  });
 
   return (
     !isFetchingCurrentUser && (
